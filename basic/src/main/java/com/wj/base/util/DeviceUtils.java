@@ -3,6 +3,7 @@ package com.wj.base.util;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
@@ -84,17 +85,36 @@ public class DeviceUtils {
      * @return
      */
     public static String getAndroidSDKVersion() {
+        return Build.VERSION.RELEASE + "";
+    }
+
+    /**
+     * 得到当前手机 sdk版本号
+     *
+     * @return
+     */
+    public static String getAndroidSDKVersionCode() {
         return android.os.Build.VERSION.SDK_INT + "";
     }
 
     /**
-     * 得到设备名称
+     * 得到设备型号
      *
      * @param
      * @return
      */
     public static String getDeviceName() {
         return android.os.Build.MODEL;
+    }
+
+    /**
+     * 得到设备厂商
+     *
+     * @param
+     * @return
+     */
+    public static String getDeviceBrand() {
+        return Build.BRAND;
     }
 
     /**

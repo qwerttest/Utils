@@ -17,28 +17,20 @@ public final class DensityUtils {
 
 	private static float mDensity = 0;
 	private static float mScaleDensity = 0;
-	private static int mScreenWidth = 0;
-	private static int mScreenHeight = 0;
 	private static int mStatusBarHeight = 0;
 
 	/**
 	 * 得到设备屏幕的宽度
 	 */
 	public static int getScreenWidth(Context context){
-		if(mScreenWidth <= 0){
-			mScreenWidth = context.getResources().getDisplayMetrics().widthPixels;
-		}
-		return mScreenWidth;
+		return context.getResources().getDisplayMetrics().widthPixels;
 	}
 
 	/**
 	 * 得到设备屏幕的高度
 	 */
 	public static int getScreenHeight(Context context){
-		if(mScreenHeight <= 0){
-			mScreenWidth = context.getResources().getDisplayMetrics().heightPixels;
-		}
-		return mScreenWidth;
+		return context.getResources().getDisplayMetrics().heightPixels;
 	}
 
 	/**
@@ -83,7 +75,7 @@ public final class DensityUtils {
 	 */
 	public static final int dip2px(Context context, float dipValue){
 		return (int)(dipValue * density(context) + 0.5f);
-    } 
+	}
 
 	/**
 	 * 像素转换密度

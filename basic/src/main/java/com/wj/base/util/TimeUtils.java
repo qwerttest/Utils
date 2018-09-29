@@ -19,11 +19,7 @@ public class TimeUtils {
     public static String formatTimeFromProgress(long progress) {
         //总的秒数
         long msecTotal = progress / 1000;
-        long min = msecTotal / 60;
-        long msec = msecTotal % 60;
-        String minStr = min < 10 ? "0" + min : "" + min;
-        String msecStr = msec < 10 ? "0" + msec : "" + msec;
-        return minStr + ":" + msecStr;
+        return formatTimeFromLeftTime(msecTotal);
     }
 
     //将字符串时间转换成long类型时间
@@ -61,12 +57,14 @@ public class TimeUtils {
      *
      * @return
      */
-    public static String formatTimeFromLeftTime(int msecTotal) {
-        int min = msecTotal / 60;
-        int msec = msecTotal % 60;
+    public static String formatTimeFromLeftTime(long msecTotal) {
+        long hour = msecTotal / 3600;
+        long min = msecTotal % 3600 / 60;
+        long msec = msecTotal % 60;
+        String hourStr = hour > 0 ? ((hour < 10 ? ("0" + hour) : hour) + ":") : "";
         String minStr = min < 10 ? "0" + min : "" + min;
         String msecStr = msec < 10 ? "0" + msec : "" + msec;
-        return minStr + ":" + msecStr;
+        return hourStr + minStr + ":" + msecStr;
     }
 
     //秒数转成11:50:36
