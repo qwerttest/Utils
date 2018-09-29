@@ -26,7 +26,40 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:23+'
+    provided 'com.android.support:appcompat-v7:23+'
     testCompile 'junit:junit:4.12'
 }
-//apply from:"maven-branch.gradle"
+
+ext {
+    //项目地址
+    siteUrl = 'https://github.com/qwerttest/Utils'
+    //项目下载地址
+    gitUrl = 'https://github.com/qwerttest/Utils.git'
+
+    //要发布的仓库，需要在jCenter中创建
+    bintrayRepo = 'maven'
+    //在maven仓库中创建的工程的名字
+    bintrayName = 'utils'
+
+    //要发布到的group的标识，使用module包名即可
+    publishedGroupId = 'com.android.frame.third.library'
+    //libraryName, artifact, moduleName必须保持一致
+    libraryName = 'basic'
+    //artifactId 要发布的工程的标识
+    artifact = 'basic'
+    libraryDescription = 'this is a test'//项目描述
+    //要发布的版本号
+    libraryVersion = '1.0.1'
+ 
+    //发布者的信息
+    developerId = 'jin'
+    developerName = 'jin'
+    developerEmail = 'wj19890810@gmail.com'
+
+    //许可信息，不用修改
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from:'upload.gradle'
