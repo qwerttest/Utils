@@ -39,6 +39,23 @@ public class TimeUtils {
         return l;
     }
 
+    //将字符串时间转换成long类型时间
+    public static long formatStringToLong2(String time) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
+        try {
+            date = format.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long l = 0;
+        if (date != null) {
+            l = date.getTime();
+        }
+
+        return l;
+    }
+
     //将long类型转换成字符串类型
     public static String formatLongToString(long time) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
