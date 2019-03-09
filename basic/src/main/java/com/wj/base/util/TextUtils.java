@@ -7,8 +7,12 @@ import android.text.TextWatcher;
 import android.util.Base64;
 import android.widget.EditText;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -614,5 +618,64 @@ public class TextUtils {
         } else {
             return name;
         }
+    }
+
+    public static String sha1(String data){
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            md.update(data.getBytes());
+            StringBuffer buf = new StringBuffer();
+            byte[] bits = md.digest();
+            for(int i=0;i<bits.length;i++){
+                int a = bits[i];
+                if(a<0) a+=256;
+                if(a<16) buf.append("0");
+                buf.append(Integer.toHexString(a));
+            }
+            return buf.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
+    /**
+     * map排序，按字母从小到大升序
+     * @param exclude 排除某个key
+     * */
+    public static String map2SortString(Map<String, String> params, String exclude) {
+        List<String> keys = new ArrayList(params.keySet());
+        Collections.sort(keys);
+        StringBuffer prestr = new StringBuffer();
+
+        for(int i = 0; i < keys.size(); ++i) {
+            String key = keys.get(i);
+            if(!exclude.equals(key) && params.get(key) != null && params.get(key).length()>0) {
+                prestr.append("&" + key + "=" + params.get(key));
+            }
+        }
+
+        return prestr.substring(1);
+    }
+
+    /**
+     * map排序，按字母从小到大升序
+     * @param exclude 排除某些key
+     * */
+    public static String map2SortString(Map<String, String> params, String... exclude) {
+        List<String> keys = new ArrayList(params.keySet());
+        Collections.sort(keys);
+        StringBuffer prestr = new StringBuffer();
+        List<String> excludes = new ArrayList<>();
+        for (String str : exclude){
+            excludes.add(str);
+        }
+        for(int i = 0; i < keys.size(); ++i) {
+            String key = keys.get(i);
+            if(!excludes.contains(key) && params.get(key) != null && params.get(key).length()>0) {
+                prestr.append("&" + key + "=" + params.get(key));
+            }
+        }
+        return prestr.substring(1);
     }
 }
