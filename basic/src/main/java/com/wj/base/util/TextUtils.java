@@ -206,6 +206,13 @@ public class TextUtils {
             return false;
     }
 
+    public static final boolean isEmpty2(String str) {
+        if (null == str || str.trim().length() == 0 || "null".equals(str))
+            return true;
+        else
+            return false;
+    }
+
     public static final String stringUnicodeEncode(String String) {
         char aChar;
         int len = String.length();
