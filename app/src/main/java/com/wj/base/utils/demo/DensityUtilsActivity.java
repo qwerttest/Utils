@@ -1,7 +1,9 @@
 package com.wj.base.utils.demo;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 
 import com.wj.base.util.DensityUtils;
@@ -54,10 +56,12 @@ public class DensityUtilsActivity extends BaseActivity {
         showToast(DensityUtils.getStatusBarHeight(this, 20));
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void getScreenHeight(View view) {
         showToast(DensityUtils.getScreenHeight(this));
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void getScreenWidth(View view) {
         showToast(DensityUtils.getScreenWidth(this));
     }

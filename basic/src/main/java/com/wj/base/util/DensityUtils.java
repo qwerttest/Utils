@@ -2,7 +2,11 @@ package com.wj.base.util;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.WindowManager;
 
 import java.lang.reflect.Field;
 
@@ -22,16 +26,42 @@ public final class DensityUtils {
 	/**
 	 * 得到设备屏幕的宽度
 	 */
-	public static int getScreenWidth(Context context){
-		return context.getResources().getDisplayMetrics().widthPixels;
+	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static int getScreenWidth(Context context){
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        if(windowManager != null){
+            DisplayMetrics metrics = new DisplayMetrics();
+            windowManager.getDefaultDisplay().getRealMetrics(metrics);
+            return metrics.widthPixels;
+        }
+	    return getDisplayWidth(context);
 	}
 
-	/**
+    /**
+     * 得到设备屏幕的宽度
+     */
+    public static int getDisplayWidth(Context context){
+        return context.getResources().getDisplayMetrics().widthPixels;
+    }
+
+
+    /**
 	 * 得到设备屏幕的高度
 	 */
-	public static int getScreenHeight(Context context){
-		return context.getResources().getDisplayMetrics().heightPixels;
+	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static int getScreenHeight(Context context){
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        if(windowManager != null){
+            DisplayMetrics metrics = new DisplayMetrics();
+            windowManager.getDefaultDisplay().getRealMetrics(metrics);
+            return metrics.heightPixels;
+        }
+        return getDisplayHeight(context);
 	}
+
+	public static int getDisplayHeight(Context context){
+        return context.getResources().getDisplayMetrics().heightPixels;
+    }
 
 	/**
 	 * 获取状态栏高度
