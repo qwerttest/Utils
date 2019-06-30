@@ -51,7 +51,11 @@
                 android:layout_height="wrap_content"
                 android:text="RegularUtils"
                 android:onClick="RegularUtils"/>
-
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ResourceUtils"
+                android:onClick="ResouceUtils"/>
         </LinearLayout>
     </ScrollView>
 

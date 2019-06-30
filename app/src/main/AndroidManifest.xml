@@ -24,6 +24,7 @@
         <activity android:name="com.wj.base.utils.demo.KeyBoardUtilsActivity"/>
         <activity android:name="com.wj.base.utils.demo.PrompUtilsActivity"/>
         <activity android:name="com.wj.base.utils.demo.RegularUtilsActivity"/>
+        <activity android:name="com.wj.base.utils.demo.ResourceUtilsActivity"/>
     </application>
 
 </manifest>

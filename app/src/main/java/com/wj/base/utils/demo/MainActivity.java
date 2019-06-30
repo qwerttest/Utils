@@ -39,4 +39,7 @@ public class MainActivity extends BaseActivity {
         startActivity(RegularUtilsActivity.class);
     }
 
+    public void ResouceUtils(View view) {
+        startActivity(ResourceUtilsActivity.class);
+    }
 }
