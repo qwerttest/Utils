@@ -59,4 +59,55 @@ public class ResourceUtils {
         }
         return def;
     }
+
+    /**
+     * 动态获取resourceId
+     *
+     * @param defType 要获取的资源类型：drawable,string,dimen,color等
+     *
+     * */
+    public static int getIdentifier(Context context, String defType, String name){
+        int result = -1;
+        try {
+            result = context.getResources().getIdentifier(name, defType, context.getPackageName());
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = -1;
+        }
+        return result;
+    }
+
+    public static int getIdentifierDrawable(Context context, String name){
+        return getIdentifier(context, "drawable", name);
+    }
+
+    public static int getIdentifierString(Context context, String name){
+        return getIdentifier(context, "string", name);
+    }
+
+    public static int getIdentifierColor(Context context, String name){
+        return getIdentifier(context, "color", name);
+    }
+
+    public static int getIdentifierDimen(Context context, String name){
+        return getIdentifier(context, "dimen", name);
+    }
+
+    /**
+     * 根据资源id获取资源路径
+     * @param resId 资源id，比如R.drawable.ic_launcher，R.raw.test
+     * @param def 可以指定缺省路径
+     * */
+    public static String getResourcePathById(Context context, int resId, String def){
+        try {
+            return "android.resource://" + context.getPackageName() + "/" + resId;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return def;
+    }
+
+    public static String getResourcePathById(Context context, int resId){
+        return getResourcePathById(context, resId, "");
+    }
 }
