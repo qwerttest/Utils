@@ -123,6 +123,22 @@ public final class SharePreferenceUtils {
 		}
 	}
 
+    /** 存储long */
+    public static void saveLong(Context context, String key, long info, int mode)
+    {
+        try {
+            if(canAction(ApplicationInfoUtils.appName(context), key))
+            {
+                SharedPreferences sp = context.getSharedPreferences(ApplicationInfoUtils.appName(context), mode);
+                Editor editor = sp.edit();
+                editor.putLong(key, info);
+                editor.commit();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 	public static long getLong(Context context, String fileName, String key, long def, int mode)
 	{
 		try {
@@ -137,6 +153,19 @@ public final class SharePreferenceUtils {
 		return def;
 	}
 
+    public static long getLong(Context context, String key, long def, int mode)
+    {
+        try {
+            if (canAction(ApplicationInfoUtils.appName(context), key))
+            {
+                SharedPreferences mSettingPreferences = context.getSharedPreferences(ApplicationInfoUtils.appName(context), mode);
+                return mSettingPreferences.getLong(key, def);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return def;
+    }
 
 	/** 删除Share中的某一元素*/
 	public static void removeKey(Context context, String fileName, String key, int mode)
