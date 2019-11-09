@@ -29,6 +29,11 @@ public class TextUtils {
         }
     }
 
+    /**判断字符串是否为空，去掉所有空格*/
+    public static boolean isNotEmpty(String str) {
+        return null != str && (str.trim().length() > 0);
+    }
+
     public static final String bytes2String(byte[] bytes) {
         return bytes2String(bytes, "UTF-8");
     }
