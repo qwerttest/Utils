@@ -3,10 +3,12 @@ package com.wj.base.util;
 import android.util.Pair;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 13932 on 2018/3/12.
@@ -15,11 +17,19 @@ import java.util.List;
 public class SetUtils {
 
     /*判断list是否为空*/
-    public static <T> boolean isEmpty(List<T> list) {
+    public static <T> boolean isEmpty(Collection<T> list) {
         if (null != list && list.size() > 0) {
             return false;
         }
         return true;
+    }
+
+    /*判断list是否非空*/
+    public static <T> boolean isNotEmpty(Collection<T> list) {
+        if (null != list && list.size() > 0) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -126,5 +136,13 @@ public class SetUtils {
             list.add(pair);
         }
         return list;
+    }
+
+    public static final <K, V> boolean isMapEmpty(Map<K, V> map){
+        return map == null || map.isEmpty();
+    }
+
+    public static final <K, V> boolean isMapNotEmpty(Map<K, V> map){
+        return map != null && !map.isEmpty();
     }
 }
