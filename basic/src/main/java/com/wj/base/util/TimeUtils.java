@@ -24,6 +24,9 @@ public class TimeUtils {
 
     //将字符串时间转换成long类型时间
     public static long formatStringToLong(String time) {
+        if(TextUtils.isEmpty(time)){
+            return 0;
+        }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date date = null;
         try {
@@ -41,6 +44,9 @@ public class TimeUtils {
 
     //将字符串时间转换成long类型时间
     public static long formatStringToLong2(String time) {
+        if(TextUtils.isEmpty(time)){
+            return 0;
+        }
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = null;
         try {
