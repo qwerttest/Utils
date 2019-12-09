@@ -89,7 +89,32 @@ public class TextUtils {
             }
         }
 
+        public static final String bytesMd5(byte[] data) {
+            try {
+                MessageDigest mDigest = MessageDigest.getInstance("MD5");
+                mDigest.update(data);
+                byte[] result = mDigest.digest();
+                return bytesToHexString(result);
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
 
+        public static final String bytesToHexString(byte[] bytes) {
+            if (bytes == null) {
+                return "";
+            }
+            StringBuffer sb = new StringBuffer();
+            for (byte b : bytes) {
+                int val = b & 0xff;
+                if (val < 0x10) {
+                    sb.append("0");
+                }
+                sb.append(Integer.toHexString(val));
+            }
+            return sb.toString();
+        }
 
         public static final double stringToDouble(String str, double def) {
             try {
