@@ -62,4 +62,4 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 
-apply from:'upload.gradle'
+//apply from:'upload.gradle'
