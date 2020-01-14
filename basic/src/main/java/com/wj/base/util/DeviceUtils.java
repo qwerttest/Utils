@@ -10,9 +10,6 @@ import android.telephony.TelephonyManager;
 
 import com.wj.base.util.uuid.Installation;
 
-import java.math.BigInteger;
-import java.security.SecureRandom;
-
 /**
  * Created by 13932 on 2018/3/5.
  */
@@ -35,6 +32,20 @@ public class DeviceUtils {
         return mImei;
     }
 
+    /**无缓存*/
+    public static final String deviceId(Context context){
+        String deviceId = null;
+        try {
+            deviceId = ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+        } catch (Exception e) {
+        } finally {
+            if (!imeiValid(mImei)) {
+                deviceId = getUUID(context);
+            }
+        }
+        return deviceId;
+    }
+
     private static boolean imeiValid(String imei){
         if (!TextUtils.isEmpty(imei) && !"000000000000000".equals(imei)) {
             return true;
@@ -48,8 +59,7 @@ public class DeviceUtils {
             uuid = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
             if (null == uuid || "9774d56d682e549c".equals(uuid) || uuid.length() < 15 ) {
                 //if ANDROID_ID is null, or it's equals to the GalaxyTab generic ANDROID_ID or bad, generates a new one
-                final SecureRandom random = new SecureRandom();
-                uuid = new BigInteger(64, random).toString(16);
+                uuid = null;
             }
             if(TextUtils.isEmpty(uuid)) {
                 uuid = appInstallationId(context);
