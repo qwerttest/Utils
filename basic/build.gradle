@@ -49,7 +49,7 @@ ext {
     artifact = 'basic'
     libraryDescription = 'this is a test'//项目描述
     //要发布的版本号
-    libraryVersion = '1.0.8'
+    libraryVersion = '1.0.9'
  
     //发布者的信息
     developerId = 'jin'
@@ -62,4 +62,4 @@ ext {
     allLicenses = ["Apache-2.0"]
 }
 
-//apply from:'upload.gradle'
+apply from:'upload.gradle'
