@@ -39,7 +39,7 @@ public class DeviceUtils {
             deviceId = ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
         } catch (Exception e) {
         } finally {
-            if (!imeiValid(mImei)) {
+            if (!imeiValid(deviceId)) {
                 deviceId = getUUID(context);
             }
         }
