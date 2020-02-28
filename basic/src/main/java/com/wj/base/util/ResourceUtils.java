@@ -3,6 +3,7 @@ package com.wj.base.util;
 
 import android.content.Context;
 import android.content.res.Resources.NotFoundException;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 
 public class ResourceUtils {
@@ -109,5 +110,24 @@ public class ResourceUtils {
 
     public static String getResourcePathById(Context context, int resId){
         return getResourcePathById(context, resId, "");
+    }
+
+    public static int string2Color(String colorStr){
+        return string2Color(colorStr, android.R.color.transparent);
+    }
+
+    /**
+     * @param colorStr 如BB4C3B
+     * @param defColor 默认颜色
+     *   返回的是颜色值
+     * */
+    public static int string2Color(String colorStr, int defColor){
+        try {
+            String infoOfBg = "#" + colorStr;
+            return Color.parseColor(infoOfBg);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return defColor;
     }
 }
