@@ -56,6 +56,12 @@
                 android:layout_height="wrap_content"
                 android:text="ResourceUtils"
                 android:onClick="ResouceUtils"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="String2Color"
+                android:onClick="String2Color"/>
         </LinearLayout>
     </ScrollView>
 

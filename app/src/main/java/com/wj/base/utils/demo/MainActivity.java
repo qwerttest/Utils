@@ -3,6 +3,8 @@ package com.wj.base.utils.demo;
 import android.os.Bundle;
 import android.view.View;
 
+import com.wj.base.util.ResourceUtils;
+
 public class MainActivity extends BaseActivity {
 
     @Override
@@ -41,5 +43,9 @@ public class MainActivity extends BaseActivity {
 
     public void ResouceUtils(View view) {
         startActivity(ResourceUtilsActivity.class);
+    }
+
+    public void String2Color(View view) {
+        view.setBackgroundColor(ResourceUtils.string2Color("你是一个"));
     }
 }
