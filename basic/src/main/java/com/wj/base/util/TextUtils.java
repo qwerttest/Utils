@@ -22,7 +22,7 @@ public class TextUtils {
 
     /**判断字符串是否为空，去掉所有空格*/
     public static boolean isEmpty(String str) {
-        if (null == str || str.trim().length() == 0){
+        if (null == str || "null".equalsIgnoreCase(str) || str.trim().length() == 0){
             return true;
         } else{
             return false;
@@ -31,7 +31,7 @@ public class TextUtils {
 
     /**判断字符串是否为空，去掉所有空格*/
     public static boolean isNotEmpty(String str) {
-        return null != str && (str.trim().length() > 0);
+        return null != str && !"null".equalsIgnoreCase(str) && (str.trim().length() > 0);
     }
 
     public static final String bytes2String(byte[] bytes) {
