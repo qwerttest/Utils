@@ -146,14 +146,18 @@ public class ApplicationInfoUtils {
     }
 
     public static final int getIntValue(Context context, String key){
+        return getIntValue(context, key, -1);
+    }
+
+    public static final int getIntValue(Context context, String key, int def){
         try {
             Bundle metaData = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA).metaData;
             if(null != metaData){
-                return metaData.getInt(key);
+                return metaData.getInt(key, def);
             }
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        return 0;
+        return def;
     }
 }
