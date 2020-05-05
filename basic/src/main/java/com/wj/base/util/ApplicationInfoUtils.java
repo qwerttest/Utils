@@ -4,6 +4,8 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.os.Process;
 
 import java.util.List;
@@ -128,5 +130,30 @@ public class ApplicationInfoUtils {
             }
         }
         return numActivities > 0;
+    }
+
+
+    public static final String getStringValue(Context context, String key){
+        try {
+            Bundle metaData = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA).metaData;
+            if(null != metaData){
+                return metaData.getString(key);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static final int getIntValue(Context context, String key){
+        try {
+            Bundle metaData = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA).metaData;
+            if(null != metaData){
+                return metaData.getInt(key);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }
