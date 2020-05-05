@@ -1,5 +1,7 @@
 package com.wj.base.util;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.Pair;
 
 import java.util.ArrayList;
@@ -24,9 +26,25 @@ public class SetUtils {
         return true;
     }
 
+    /*判断数组是否为空*/
+    public static <T> boolean isEmpty(T[] array) {
+        if (null != array && array.length > 0) {
+            return false;
+        }
+        return true;
+    }
+
     /*判断list是否非空*/
     public static <T> boolean isNotEmpty(Collection<T> list) {
         if (null != list && list.size() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /*判断数组是否非空*/
+    public static <T> boolean isNotEmpty(T[] array) {
+        if (null != array && array.length > 0) {
             return true;
         }
         return false;
@@ -126,6 +144,7 @@ public class SetUtils {
     }
 
     /*Map转list*/
+    @RequiresApi(api = Build.VERSION_CODES.ECLAIR)
     public static final <K, V> List<Pair<K, V>> mapToPairList(HashMap<K, V> map) {
         List<Pair<K, V>> list = new ArrayList<>();
         Iterator<K> it = map.keySet().iterator();
@@ -144,5 +163,13 @@ public class SetUtils {
 
     public static final <K, V> boolean isMapNotEmpty(Map<K, V> map){
         return map != null && !map.isEmpty();
+    }
+
+    public static <T> int size(Collection<T> list){
+        return list == null ? 0 : list.size();
+    }
+
+    public static <T> int size(T[] array){
+        return array == null ? 0 : array.length;
     }
 }
