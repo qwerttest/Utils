@@ -132,17 +132,20 @@ public class ApplicationInfoUtils {
         return numActivities > 0;
     }
 
-
     public static final String getStringValue(Context context, String key){
+        return getStringValue(context, key, "");
+    }
+
+    public static final String getStringValue(Context context, String key, String def){
         try {
             Bundle metaData = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA).metaData;
             if(null != metaData){
-                return metaData.getString(key);
+                return metaData.getString(key, def);
             }
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        return "";
+        return def;
     }
 
     public static final int getIntValue(Context context, String key){
