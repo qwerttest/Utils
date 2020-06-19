@@ -12,6 +12,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
@@ -61,6 +63,28 @@ public class FileUtils {
 	public static final long fileSize(String filePath) {
 		File file = new File(filePath);
 		return file.exists() ? file.length() : 0;
+	}
+
+	/**
+	 * 获取网络文件大小
+	 */
+	public static final long fileSizeNet(String downloadUrl){
+		if(downloadUrl == null || "".equals(downloadUrl)){
+			return 0L ;
+		}
+		HttpURLConnection conn = null;
+		try {
+			URL url = new URL(downloadUrl);
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("HEAD");
+			return (long) conn.getContentLength();
+		} catch (IOException e) {
+			return 0L;
+		} finally {
+			if(conn != null){
+				conn.disconnect();
+			}
+		}
 	}
 
 	public static final byte[] fileRead(String filePath) {
