@@ -25,6 +25,7 @@ import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 
 import junit.framework.Assert;
 
@@ -646,5 +647,34 @@ public class BitmapUtils
 		}
 		return Bitmap.createBitmap(bitmap, retX, retY, width, width, null, false);*/
 	return null;
+	}
+
+	public static Bitmap getViewBitmap(View v) {
+		try {
+			v.clearFocus();
+			v.setPressed(false);
+			boolean willNotCache = v.willNotCacheDrawing();
+			v.setWillNotCacheDrawing(false);
+			// Reset the drawing cache background color to fully transparent
+			// for the duration of this operation
+			int color = v.getDrawingCacheBackgroundColor();
+			v.setDrawingCacheBackgroundColor(0);
+			if (color != 0) {
+				v.destroyDrawingCache();
+			}
+			v.buildDrawingCache();
+			Bitmap cacheBitmap = v.getDrawingCache();
+			if (cacheBitmap == null) {
+				return null;
+			}
+			Bitmap bitmap = Bitmap.createBitmap(cacheBitmap);
+			v.destroyDrawingCache();
+			v.setWillNotCacheDrawing(willNotCache);
+			v.setDrawingCacheBackgroundColor(color);
+			return bitmap;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
