@@ -24,9 +24,9 @@ public class ApplicationInfoUtils {
     /**
      * app包名
      * */
-    public static final String packageName(Context context) {
+    public static final String packageName() {
         if(TextUtils.isEmpty(mPackageName)){
-            mPackageName = context.getPackageName();
+            mPackageName = AppUtilContext.getContext().getPackageName();
         }
         return mPackageName;
     }
@@ -34,25 +34,25 @@ public class ApplicationInfoUtils {
     /**
      * app 版本号
      * */
-    public static final int versionCode(Context context) {
+    public static final int versionCode() {
         if(mVersionCode <= 0){
-            mVersionCode = androidPackageInfo(context, 0).versionCode;
+            mVersionCode = androidPackageInfo(AppUtilContext.getContext(), 0).versionCode;
         }
         return mVersionCode;
     }
 
     /*应用版本名*/
-    public static final String versionName(Context context) {
+    public static final String versionName() {
         if(TextUtils.isEmpty(mVersionName)){
-            mVersionName = androidPackageInfo(context, 0).versionName;
+            mVersionName = androidPackageInfo(AppUtilContext.getContext(), 0).versionName;
         }
         return mVersionName;
     }
 
     /*应用名称*/
-    public static final String appName(Context context) {
+    public static final String appName() {
         if(TextUtils.isEmpty(mAppName)){
-            mAppName = context.getApplicationInfo().loadLabel(context.getPackageManager()).toString();
+            mAppName = AppUtilContext.getContext().getApplicationInfo().loadLabel(AppUtilContext.getContext().getPackageManager()).toString();
         }
         return mAppName;
     }
@@ -71,7 +71,7 @@ public class ApplicationInfoUtils {
     public static final PackageInfo androidPackageInfo(Context context, int flags) {
         PackageInfo packageInfo = null;
         try {
-            packageInfo = context.getPackageManager().getPackageInfo(packageName(context), flags);
+            packageInfo = context.getPackageManager().getPackageInfo(packageName(), flags);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,7 +89,7 @@ public class ApplicationInfoUtils {
 
     public static final ApplicationInfo androidApplicationInfo(Context context, int flag) {
         try {
-            return context.getPackageManager().getApplicationInfo(packageName(context), flag);
+            return context.getPackageManager().getApplicationInfo(packageName(), flag);
         } catch (Exception e) {
             return null;
         }

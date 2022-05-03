@@ -11,6 +11,7 @@ import android.text.TextUtils;
  * @author wjian
  * 
  * */
+@Deprecated
 public final class SharePreferenceUtils {
 
 	/**
@@ -22,9 +23,9 @@ public final class SharePreferenceUtils {
 	public static boolean getBoolean(Context context, String key, boolean def, int mode)
 	{
 		try {
-			if (canAction(ApplicationInfoUtils.appName(context), key))
+			if (canAction(ApplicationInfoUtils.appName(), key))
             {
-                SharedPreferences mSettingPreferences = context.getSharedPreferences(ApplicationInfoUtils.appName(context), mode);
+                SharedPreferences mSettingPreferences = context.getSharedPreferences(ApplicationInfoUtils.appName(), mode);
                 return mSettingPreferences.getBoolean(key, def);
             }
 		} catch (Exception e) {
@@ -36,8 +37,8 @@ public final class SharePreferenceUtils {
 	/** 存储Boolean */
 	public static void saveBoolean(Context context, String key, boolean info, int mode) {
 		try {
-			if(canAction(ApplicationInfoUtils.appName(context), key)){
-                SharedPreferences sp = context.getSharedPreferences(ApplicationInfoUtils.appName(context), mode);
+			if(canAction(ApplicationInfoUtils.appName(), key)){
+                SharedPreferences sp = context.getSharedPreferences(ApplicationInfoUtils.appName(), mode);
                 Editor editor = sp.edit();
                 editor.putBoolean(key, info);
                 editor.commit();
@@ -50,9 +51,9 @@ public final class SharePreferenceUtils {
 	public static String getString(Context context, String key, String def, int mode)
 	{
 		try {
-			if (canAction(ApplicationInfoUtils.appName(context), key))
+			if (canAction(ApplicationInfoUtils.appName(), key))
             {
-                SharedPreferences mSettingPreferences = context.getSharedPreferences(ApplicationInfoUtils.appName(context), mode);
+                SharedPreferences mSettingPreferences = context.getSharedPreferences(ApplicationInfoUtils.appName(), mode);
                 return mSettingPreferences.getString(key, def);
             }
 		} catch (Exception e) {
@@ -65,9 +66,9 @@ public final class SharePreferenceUtils {
 	public static void saveString(Context context, String key, String info, int mode)
 	{
 		try {
-			if(canAction(ApplicationInfoUtils.appName(context), key))
+			if(canAction(ApplicationInfoUtils.appName(), key))
             {
-                SharedPreferences sp = context.getSharedPreferences(ApplicationInfoUtils.appName(context), mode);
+                SharedPreferences sp = context.getSharedPreferences(ApplicationInfoUtils.appName(), mode);
                 Editor editor = sp.edit();
                 editor.putString(key, info);
                 editor.commit();
@@ -80,9 +81,9 @@ public final class SharePreferenceUtils {
 	public static int getInt(Context context, String key, int def, int mode)
 	{
 		try {
-			if (canAction(ApplicationInfoUtils.appName(context), key))
+			if (canAction(ApplicationInfoUtils.appName(), key))
             {
-                SharedPreferences mSettingPreferences = context.getSharedPreferences(ApplicationInfoUtils.appName(context), mode);
+                SharedPreferences mSettingPreferences = context.getSharedPreferences(ApplicationInfoUtils.appName(), mode);
                 return mSettingPreferences.getInt(key, def);
             }
 		} catch (Exception e) {
@@ -95,9 +96,9 @@ public final class SharePreferenceUtils {
 	public static void saveInt(Context context, String key, int info, int mode)
 	{
 		try {
-			if(canAction(ApplicationInfoUtils.appName(context), key))
+			if(canAction(ApplicationInfoUtils.appName(), key))
             {
-                SharedPreferences sp = context.getSharedPreferences(ApplicationInfoUtils.appName(context), mode);
+                SharedPreferences sp = context.getSharedPreferences(ApplicationInfoUtils.appName(), mode);
                 Editor editor = sp.edit();
                 editor.putInt(key, info);
                 editor.commit();
@@ -127,9 +128,9 @@ public final class SharePreferenceUtils {
     public static void saveLong(Context context, String key, long info, int mode)
     {
         try {
-            if(canAction(ApplicationInfoUtils.appName(context), key))
+            if(canAction(ApplicationInfoUtils.appName(), key))
             {
-                SharedPreferences sp = context.getSharedPreferences(ApplicationInfoUtils.appName(context), mode);
+                SharedPreferences sp = context.getSharedPreferences(ApplicationInfoUtils.appName(), mode);
                 Editor editor = sp.edit();
                 editor.putLong(key, info);
                 editor.commit();
@@ -156,9 +157,9 @@ public final class SharePreferenceUtils {
     public static long getLong(Context context, String key, long def, int mode)
     {
         try {
-            if (canAction(ApplicationInfoUtils.appName(context), key))
+            if (canAction(ApplicationInfoUtils.appName(), key))
             {
-                SharedPreferences mSettingPreferences = context.getSharedPreferences(ApplicationInfoUtils.appName(context), mode);
+                SharedPreferences mSettingPreferences = context.getSharedPreferences(ApplicationInfoUtils.appName(), mode);
                 return mSettingPreferences.getLong(key, def);
             }
         } catch (Exception e) {

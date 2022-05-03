@@ -3,6 +3,7 @@ package com.wj.base.utils.demo;
 import android.os.Bundle;
 import android.view.View;
 
+import com.wj.base.util.AppUtilContext;
 import com.wj.base.util.ResourceUtils;
 
 public class MainActivity extends BaseActivity {
@@ -10,6 +11,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppUtilContext.init(getApplicationContext());
         setContentView(R.layout.activity_main);
     }
 

@@ -22,23 +22,23 @@ public class ResourceUtilsActivity extends Activity {
     }
 
     public void gainDrawable(View view) {
-        tv.setBackgroundResource(ResourceUtils.getIdentifierDrawable(this, "ic_launcher"));
+        tv.setBackgroundResource(ResourceUtils.getIdentifierDrawable("ic_launcher"));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void gainColor(View view) {
-        tv.setTextColor(getColor(ResourceUtils.getIdentifierColor(this, "colorAccent")));
+        tv.setTextColor(getColor(ResourceUtils.getIdentifierColor("colorAccent")));
     }
 
     public void gainString(View view) {
-        tv.setText(ResourceUtils.getIdentifierString(this, "app_name"));
+        tv.setText(ResourceUtils.getIdentifierString("app_name"));
     }
 
     public void gainDrawablePath(View view) {
-        tv.setText(ResourceUtils.getResourcePathById(this, R.drawable.ic_launcher));
+        tv.setText(ResourceUtils.getResourcePathById(R.drawable.ic_launcher));
     }
 
     public void gainDimen(View view) {
-        tv.setTextSize(getResources().getDimension(ResourceUtils.getIdentifierDimen(this, "text_size")));
+        tv.setTextSize(getResources().getDimension(ResourceUtils.getIdentifierDimen("text_size")));
     }
 }

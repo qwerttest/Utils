@@ -1,5 +1,6 @@
 package com.wj.base.util;
 
+import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.net.wifi.WifiManager;
@@ -18,6 +19,7 @@ public class DeviceUtils {
     private static String mImei = "";
     private static String mMicAddress = "";
 
+    @SuppressLint("MissingPermission")
     public static final String imei(Context context) {
         if(!imeiValid(mImei)){
             try {
@@ -33,6 +35,7 @@ public class DeviceUtils {
     }
 
     /**无缓存*/
+    @SuppressLint("MissingPermission")
     public static final String deviceId(Context context){
         String deviceId = null;
         try {

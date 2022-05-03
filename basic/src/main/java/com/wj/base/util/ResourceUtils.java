@@ -8,9 +8,9 @@ import android.graphics.drawable.Drawable;
 
 public class ResourceUtils {
 
-    public static int getColor(Context context, int id) {
+    public static int getColor(int id) {
         try {
-            return context.getResources().getColor(id);
+            return AppUtilContext.getContext().getResources().getColor(id);
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
@@ -19,42 +19,42 @@ public class ResourceUtils {
 
     public static int getDimen(Context context, int id) {
         try {
-            return (int) context.getResources().getDimension(id);
+            return (int) AppUtilContext.getContext().getResources().getDimension(id);
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
         return 0;
     }
 
-    public static Drawable getDrawable(Context context, int id, int def) {
+    public static Drawable getDrawable(int id, int def) {
         try {
-            return context.getResources().getDrawable(id);
+            return AppUtilContext.getContext().getResources().getDrawable(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return context.getResources().getDrawable(def);
+        return AppUtilContext.getContext().getResources().getDrawable(def);
     }
 
-    public static String getString(Context context, int id) {
-        return getString(context, id, "");
+    public static String getString(int id) {
+        return getString(id, "");
     }
 
-    public static String getString(Context context, int id, String def) {
+    public static String getString(int id, String def) {
         try {
-            return context.getResources().getString(id);
+            return AppUtilContext.getContext().getResources().getString(id);
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
         return def;
     }
 
-    public static int getInt(Context context, int id) {
-        return getInt(context, id, -1);
+    public static int getInt(int id) {
+        return getInt(id, -1);
     }
 
-    public static int getInt(Context context, int id, int def) {
+    public static int getInt(int id, int def) {
         try {
-            return context.getResources().getInteger(id);
+            return AppUtilContext.getContext().getResources().getInteger(id);
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
@@ -67,10 +67,10 @@ public class ResourceUtils {
      * @param defType 要获取的资源类型：drawable,string,dimen,color等
      *
      * */
-    public static int getIdentifier(Context context, String defType, String name){
+    public static int getIdentifier(String defType, String name){
         int result = -1;
         try {
-            result = context.getResources().getIdentifier(name, defType, context.getPackageName());
+            result = AppUtilContext.getContext().getResources().getIdentifier(name, defType, AppUtilContext.getContext().getPackageName());
         } catch (Exception e) {
             e.printStackTrace();
             result = -1;
@@ -78,20 +78,20 @@ public class ResourceUtils {
         return result;
     }
 
-    public static int getIdentifierDrawable(Context context, String name){
-        return getIdentifier(context, "drawable", name);
+    public static int getIdentifierDrawable(String name){
+        return getIdentifier("drawable", name);
     }
 
-    public static int getIdentifierString(Context context, String name){
-        return getIdentifier(context, "string", name);
+    public static int getIdentifierString(String name){
+        return getIdentifier("string", name);
     }
 
-    public static int getIdentifierColor(Context context, String name){
-        return getIdentifier(context, "color", name);
+    public static int getIdentifierColor(String name){
+        return getIdentifier("color", name);
     }
 
-    public static int getIdentifierDimen(Context context, String name){
-        return getIdentifier(context, "dimen", name);
+    public static int getIdentifierDimen(String name){
+        return getIdentifier("dimen", name);
     }
 
     /**
@@ -99,17 +99,17 @@ public class ResourceUtils {
      * @param resId 资源id，比如R.drawable.ic_launcher，R.raw.test
      * @param def 可以指定缺省路径
      * */
-    public static String getResourcePathById(Context context, int resId, String def){
+    public static String getResourcePathById(int resId, String def){
         try {
-            return "android.resource://" + context.getPackageName() + "/" + resId;
+            return "android.resource://" + AppUtilContext.getContext().getPackageName() + "/" + resId;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return def;
     }
 
-    public static String getResourcePathById(Context context, int resId){
-        return getResourcePathById(context, resId, "");
+    public static String getResourcePathById(int resId){
+        return getResourcePathById(resId, "");
     }
 
     public static int string2Color(String colorStr){

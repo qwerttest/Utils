@@ -19,15 +19,15 @@ public class ApplicationInfoUtilsActivity extends BaseActivity{
     }
 
     public void packageName(View view) {
-        showToast(ApplicationInfoUtils.packageName(this));
+        showToast(ApplicationInfoUtils.packageName());
     }
 
     public void versionCode(View view) {
-        showToast(ApplicationInfoUtils.versionCode(this)+"");
+        showToast(ApplicationInfoUtils.versionCode()+"");
     }
 
     public void versionName(View view) {
-        showToast(ApplicationInfoUtils.versionName(this));
+        showToast(ApplicationInfoUtils.versionName());
     }
 
     public void isAppExist(View view) {
@@ -59,6 +59,6 @@ public class ApplicationInfoUtilsActivity extends BaseActivity{
     }
 
     public void appName(View view) {
-        showToast(ApplicationInfoUtils.appName(this)+"");
+        showToast(ApplicationInfoUtils.appName()+"");
     }
 }
