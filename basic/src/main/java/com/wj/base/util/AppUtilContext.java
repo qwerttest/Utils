@@ -8,13 +8,13 @@ import android.content.Context;
  * @author WangJian on 2022/5/3 18
  */
 public class AppUtilContext {
-    private static Context context;
+    private static Context mContext;
 
     public static void init(Context context) {
-        context = context;
+        mContext = context;
     }
 
     public static Context getContext() {
-        return context;
+        return mContext;
     }
 }
